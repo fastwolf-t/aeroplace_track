@@ -1,3 +1,9 @@
+
+[[tool.poetry.source]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+priority = "primary"
+
 [project]
 name = "curs"
 version = "0.1.0"
@@ -57,3 +63,4 @@ sequence = [
   { cmd = "python -c \"print('mypy running...')\"" },
   { cmd = "mypy src tests", env = { MYPYPATH = "src" } }
 ]
+

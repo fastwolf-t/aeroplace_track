@@ -1,4 +1,10 @@
-﻿"""Main user interaction flow."""
+﻿# зеркало PyPI
+# python3 -m poetry source remove tsinghua
+# python3 -m poetry source add --priority=primary tsinghua
+# #https://pypi.tuna.tsinghua.edu.cn/simple/
+# python3 -m poetry install
+
+"""Main user interaction flow."""
 
 from __future__ import annotations
 
@@ -28,7 +34,9 @@ def user_interaction() -> None:
             print("Country name cannot be empty.")
             return
 
-        top_n_raw = input("Введите количество самолетов для вывода в топ N: ").strip()
+        top_n_raw = input(
+            "Введите количество самолетов для вывода в топ N: "
+        ).strip()
         try:
             top_n = int(top_n_raw)
         except ValueError:
@@ -36,7 +44,8 @@ def user_interaction() -> None:
             return
 
         filter_words_raw = input(
-            "Введите названия стран для фильтрации по стране регистрации (через запятую): "
+            "Введите названия стран для фильтрации "
+            "по стране регистрации (через запятую): "
         )
         filter_words = _parse_filter_words(filter_words_raw)
 

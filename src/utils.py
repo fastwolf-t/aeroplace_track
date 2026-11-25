@@ -13,7 +13,9 @@ def filter_aeroplanes(
         return list(aeroplanes)
 
     normalized = {
-        word.strip().casefold() for word in filter_words if word and word.strip()
+        word.strip().casefold()
+        for word in filter_words
+        if word and word.strip()
     }
     if not normalized:
         return list(aeroplanes)
@@ -74,7 +76,9 @@ def sort_aeroplanes(aeroplanes: list[Aeroplane]) -> list[Aeroplane]:
     )
 
 
-def get_top_aeroplanes(aeroplanes: list[Aeroplane], top_n: int) -> list[Aeroplane]:
+def get_top_aeroplanes(
+    aeroplanes: list[Aeroplane], top_n: int
+) -> list[Aeroplane]:
     """Return top N aeroplanes."""
     if not isinstance(top_n, int) or top_n <= 0:
         raise ValueError("N must be a positive integer.")

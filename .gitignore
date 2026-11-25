@@ -5,3 +5,5 @@
 htmlcov/
 data/*.json
 !data/.gitkeep
+
+todo.txt

@@ -37,14 +37,18 @@ class Aeroplane:
         self._origin_country = self._validate_text(
             origin_country, "origin_country"
         )
-        self._velocity = self._validate_number(velocity, "velocity", min_value=0)
+        self._velocity = self._validate_number(
+            velocity, "velocity", min_value=0
+        )
         self._baro_altitude = self._validate_number(
             baro_altitude, "baro_altitude"
         )
         self._geo_altitude = self._validate_optional_number(
             geo_altitude, "geo_altitude"
         )
-        self._longitude = self._validate_optional_number(longitude, "longitude")
+        self._longitude = self._validate_optional_number(
+            longitude, "longitude"
+        )
         self._latitude = self._validate_optional_number(latitude, "latitude")
         self._on_ground = bool(on_ground) if on_ground is not None else False
 
@@ -82,7 +86,9 @@ class Aeroplane:
         try:
             return float(value)
         except (TypeError, ValueError) as exc:
-            raise ValueError(f"{field_name} must be a number or None.") from exc
+            raise ValueError(
+                f"{field_name} must be a number or None."
+            ) from exc
 
     @property
     def icao24(self) -> str:
@@ -122,7 +128,9 @@ class Aeroplane:
 
     def _comparison_value(self, other: object) -> "Aeroplane":
         if not isinstance(other, Aeroplane):
-            raise TypeError("Comparison is supported only between Aeroplane objects.")
+            raise TypeError(
+                "Comparison is supported only between Aeroplane objects."
+            )
         return other
 
     def __eq__(self, other: object) -> bool:
@@ -193,7 +201,9 @@ class Aeroplane:
         )
 
     @classmethod
-    def cast_to_object_list(cls, data: list[dict[str, Any]]) -> list["Aeroplane"]:
+    def cast_to_object_list(
+        cls, data: list[dict[str, Any]]
+    ) -> list["Aeroplane"]:
         """Convert a list of dictionaries to a list of Aeroplane objects."""
         if not isinstance(data, list):
             raise TypeError("Aeroplanes data must be a list.")

@@ -18,7 +18,9 @@ class BaseStorage(ABC):
         """Add an aeroplane to storage."""
 
     @abstractmethod
-    def get_aeroplanes(self, criteria: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    def get_aeroplanes(
+        self, criteria: dict[str, Any] | None = None
+    ) -> list[dict[str, Any]]:
         """Get aeroplanes matching criteria."""
 
     @abstractmethod
@@ -57,7 +59,9 @@ class JSONSaver(BaseStorage):
             json.dump(data, file, ensure_ascii=False, indent=2)
 
     @staticmethod
-    def _matches(item: dict[str, Any], criteria: dict[str, Any] | None) -> bool:
+    def _matches(
+        item: dict[str, Any], criteria: dict[str, Any] | None
+    ) -> bool:
         if not criteria:
             return True
         for key, value in criteria.items():
@@ -90,7 +94,9 @@ class JSONSaver(BaseStorage):
         data.append(new_item)
         self._write_data(data)
 
-    def get_aeroplanes(self, criteria: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    def get_aeroplanes(
+        self, criteria: dict[str, Any] | None = None
+    ) -> list[dict[str, Any]]:
         """Return aeroplanes matching all criteria key-value pairs."""
         if criteria is not None and not isinstance(criteria, dict):
             raise TypeError("criteria must be a dictionary or None.")
@@ -108,7 +114,9 @@ class JSONSaver(BaseStorage):
             self._write_data([])
             return deleted
 
-        remaining = [item for item in data if not self._matches(item, criteria)]
+        remaining = [
+            item for item in data if not self._matches(item, criteria)
+        ]
         deleted = len(data) - len(remaining)
         if deleted:
             self._write_data(remaining)
